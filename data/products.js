@@ -61,6 +61,29 @@ class clothing extends Products{
 export let products = [];
 
 
+export function loadProductsFetch(){
+  const promise = fetch('https://supersimplebackend.dev/products').then((response)=>{
+      return response.json();
+  }).then((productsData) => {
+    products = productsData.map((productDetails) => {
+      if(productDetails.type === 'clothing'){
+        return new clothing(productDetails);
+      }
+      return new Products(productDetails);
+    });
+
+    console.log('products loaded');
+
+  }); 
+
+  return Promise;
+}
+
+
+// fetch makes the HTTP request which is easier way and uses promise, it will request the backend from the url and then move to the "then".
+
+
+
 export function loadproducts(fun){
   const xhr = new XMLHttpRequest();
 
