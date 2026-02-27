@@ -6,14 +6,16 @@ import {loadCart} from '../data/cart.js';
 //import '../data/backend-practice.js';
 
 async function loadPage(){     // async makes the the function return promise
-
+    try{
     await loadProductsFetch();  // await make the code like normal (step by step) i.e waits for this line to execute before moving forword
     
     const value = await new Promise((resolve)=>{    // we can only use await inside the async function
         loadCart(() => {
             resolve("value3");
         });
-    })
+    })} catch(error){
+        console.log("error has occured");
+    }
 
     renderOrderSummary(); 
     renderPaymentSummary(); 

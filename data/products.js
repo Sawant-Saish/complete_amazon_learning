@@ -74,6 +74,8 @@ export function loadProductsFetch(){
 
     console.log('products loaded');
 
+  }).catch((error)=>{
+    console.log("Error has occured, please check");
   }); 
 
   return Promise;
@@ -98,6 +100,10 @@ export function loadproducts(fun){
     console.log('products loaded');
 
     fun();
+  });
+
+  xhr.addEventListener('error',() => {
+    console.log("Error has occured, please check");
   });
   
   xhr.open('GET','https://supersimplebackend.dev/products');
