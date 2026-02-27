@@ -5,6 +5,23 @@ import {loadCart} from '../data/cart.js';
 //import '../data/carts-class.js';
 //import '../data/backend-practice.js';
 
+async function loadPage(){     // async makes the the function return promise
+
+    await loadProductsFetch();  // await make the code like normal (step by step) i.e waits for this line to execute before moving forword
+    
+    const value = await new Promise((resolve)=>{    // we can only use await inside the async function
+        loadCart(() => {
+            resolve("value3");
+        });
+    })
+
+    renderOrderSummary(); 
+    renderPaymentSummary(); 
+                                // rather than using nested statements in then 
+}
+loadPage();
+
+/*
 Promise.all([
     loadProductsFetch(),
     new Promise((resolve)=>{
@@ -18,6 +35,12 @@ Promise.all([
     });
 
 
+    */
+
+
+
+/*
+
 
 new Promise((resolve)=>{
     loadProductsFetch(() => {
@@ -27,6 +50,13 @@ new Promise((resolve)=>{
     renderOrderSummary(); 
     renderPaymentSummary();     
 });
+
+
+
+*/
+
+
+
 
 // this promise does the same thing as the below callback function which is it waits for the loadproducts to load before moving to next steps i.e renderOrdersummary and renderPaymentSummary. 
 
